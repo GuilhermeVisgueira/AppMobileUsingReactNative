@@ -1,5 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
-import Menu from './src/Menu';
+import Menu from '../Menu';
 
 
 export default function TelaInicial(){
