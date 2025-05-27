@@ -5,9 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import TelaLogin from './src/Telas/Login';
 import TelaInicial from './src/Telas/TelaInicial';
-import Menu from './src/Menu'; // Só mantenha se realmente for usar
 
-// Aqui cria o Stack
 const Stack = createNativeStackNavigator();
 
 export default function App() {

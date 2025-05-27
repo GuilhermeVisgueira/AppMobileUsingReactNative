@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function TelaLogin({ navigation }) {
   const [email, setEmail] = useState('');
@@ -25,7 +26,7 @@ export default function TelaLogin({ navigation }) {
         secureTextEntry
         style={styles.input}
       />
-      <Button title="Entrar" onPress={Login} />
+      <Button style={styles.button} title="Entrar" onPress={Login} />
     </View>
   );
 }
@@ -38,7 +39,12 @@ const styles = StyleSheet.create({
     fontSize: 24, marginBottom: 16
   },
   input: {
-    width: '80%', height: 40, borderColor: '#ccc',
-    borderWidth: 1, marginBottom: 12, paddingHorizontal: 8, borderRadius: 4
-  },
+    height: 50,
+    borderColor: '#3A2258',
+    borderWidth: 2,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    fontSize: 16,
+    margin: 15
+  }
 });
