@@ -6,6 +6,7 @@ export default function Login() {
     <View style={styles.container}>
       <Text>Teste Login!</Text>
       <StatusBar style="auto" />
+      
     </View>
   );
 }
