@@ -1,22 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import TelaLogin from './src/Telas/Login';
-import TelaInicial from './src/Telas/TelaInicial';
-import Menu from './src/Menu'; // Só mantenha se realmente for usar
-
-// Aqui cria o Stack
-const Stack = createNativeStackNavigator();
+import DrawerNavigator from './src/navigation/DrawerNavigator';
+import { ThemeProvider } from './src/context/ThemeContext';
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={TelaLogin} />
-        <Stack.Screen name="Home" component={TelaInicial} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ThemeProvider>
+      <NavigationContainer>
+        <DrawerNavigator />
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
