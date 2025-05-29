@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { getNotes } from '../utils/storage';
 import { useTheme } from '../context/ThemeContext';
+import { estiloGlobal, cores } from '../styles/global';
 
 const formatDate = (isoString) => {
   const date = new Date(isoString);
@@ -31,25 +32,31 @@ const VerAnotacoesScreen = ({ navigation }) => {
   const renderItem = ({ item, index }) => (
     <TouchableOpacity
       style={[
-        styles.noteItem,
+        estiloGlobal.notaItem,
         {
-          backgroundColor: darkMode ? '#222' : '#f7f7f7',
-          borderColor: darkMode ? '#444' : '#ccc',
+          backgroundColor: darkMode ? cores.secundarioEscuro : cores.secundarioClaro,
+          borderColor: darkMode ? cores.cinzaEscuro : cores.cinzaClaro,
         },
       ]}
       onPress={() => navigation.navigate('Ver Anotação', { note: item, index })}
     >
-      <Text style={[styles.noteTitle, { color: darkMode ? '#fff' : '#000' }]}>{item.title}</Text>
-      <Text style={[styles.noteDate, { color: darkMode ? '#bbb' : '#666' }]}>{formatDate(item.date)}</Text>
+      <Text style={[estiloGlobal.tituloNota, { color: darkMode ? cores.textoEscuro : cores.textoClaro }]}>
+        {item.title}
+      </Text>
+      <Text style={[estiloGlobal.dataNota, { color: darkMode ? '#bbb' : '#666' }]}>
+        {formatDate(item.date)}
+      </Text>
     </TouchableOpacity>
   );
 
   return (
-    <View style={[styles.container, { backgroundColor: darkMode ? '#111' : '#fff' }]}>
-      <Text style={[styles.title, { color: darkMode ? '#fff' : '#000' }]}>Todas as Anotações</Text>
+    <View style={[estiloGlobal.container, { backgroundColor: darkMode ? cores.fundoEscuro : cores.fundoClaro }]}>
+      <Text style={[estiloGlobal.titulo, { color: darkMode ? cores.textoEscuro : cores.textoClaro }]}>
+        Todas as Anotações
+      </Text>
 
       {notes.length === 0 ? (
-        <Text style={[styles.noNotes, { color: darkMode ? '#aaa' : '#666' }]}>
+        <Text style={[estiloGlobal.semNotas, { color: darkMode ? '#aaa' : '#666' }]}>
           Nenhuma anotação disponível.
         </Text>
       ) : (
@@ -63,18 +70,5 @@ const VerAnotacoesScreen = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: { flex: 1, paddingHorizontal: 20, paddingTop: 20 },
-  title: { fontSize: 24, marginBottom: 20, textAlign: 'center' },
-  noteItem: {
-    padding: 14,
-    borderBottomWidth: 1,
-    borderRadius: 6,
-    marginBottom: 10,
-  },
-  noteTitle: { fontSize: 18, fontWeight: '500' },
-  noteDate: { fontSize: 14, marginTop: 4 },
-  noNotes: { textAlign: 'center', marginTop: 50, fontSize: 16 },
-});
 
 export default VerAnotacoesScreen;

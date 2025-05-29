@@ -2,6 +2,7 @@ import React from 'react';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { View, StyleSheet } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
+import { estiloGlobal, cores } from '../styles/global';
 
 const DrawerContent = (props) => {
   const { darkMode } = useTheme();
@@ -9,10 +10,11 @@ const DrawerContent = (props) => {
   return (
     <DrawerContentScrollView
       {...props}
-      style={{ backgroundColor: darkMode ? '#111' : '#fff' }}
+      style={{ backgroundColor: darkMode ? '#7147a6' : '#7147a6' }}
     >
       <View style={styles.drawerContent}>
         <DrawerItem
+        
           label="Início"
           labelStyle={{ color: darkMode ? '#fff' : '#000' }}
           onPress={() => props.navigation.navigate('Início')}
@@ -36,6 +38,8 @@ const DrawerContent = (props) => {
           label="Sair"
           labelStyle={{ color: darkMode ? '#fff' : '#000' }}
           onPress={() => props.navigation.navigate('Login')}
+          
+         
         />
       </View>
     </DrawerContentScrollView>
@@ -46,6 +50,8 @@ const styles = StyleSheet.create({
   drawerContent: {
     flex: 1,
     padding: 20,
+    
+    
   },
 });
 

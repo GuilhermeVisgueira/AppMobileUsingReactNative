@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { saveNote, updateNote } from '../utils/storage';
 import { useTheme } from '../context/ThemeContext';
+import { estiloGlobal, cores } from '../styles/global';
 
 const CreateNoteScreen = ({ navigation, route }) => {
   const { darkMode } = useTheme();
@@ -44,37 +45,32 @@ const CreateNoteScreen = ({ navigation, route }) => {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: darkMode ? '#111' : '#f9f9f9' }]}>
-      <Text style={[styles.title, { color: darkMode ? '#fff' : '#333' }]}>
+    <View style={[estiloGlobal.container, { backgroundColor: darkMode ? cores.fundoEscuro : cores.fundoClaro }]}>
+      <Text style={[estiloGlobal.titulo, { color: darkMode ? cores.textoClaro : cores.textoEscuro }]}>
         {editingNote ? 'Editar Anotação' : 'Criar Anotação'}
       </Text>
 
       <TextInput
-        style={[
-          styles.input,
-          {
-            backgroundColor: darkMode ? '#333' : '#fff',
-            color: darkMode ? '#fff' : '#000',
-            borderColor: darkMode ? '#555' : '#ccc',
+        style={[estiloGlobal.input,estiloGlobal.textArea, {
+          backgroundColor: darkMode ? cores.cinzaEscuro : cores.fundoClaro,
+          color: darkMode ? cores.textoClaro : cores.textoEscuro,
+          borderColor: darkMode ? cores.cinzaEscuro : cores.cinzaClaro
           },
         ]}
         placeholder="Título"
-        placeholderTextColor={darkMode ? '#888' : '#999'}
+        placeholderTextColor={darkMode ? cores.textoClaro : cores.textoEscuro}
         value={title}
         onChangeText={setTitle}
       />
       <TextInput
-        style={[
-          styles.input,
-          styles.textArea,
-          {
-            backgroundColor: darkMode ? '#333' : '#fff',
-            color: darkMode ? '#fff' : '#000',
-            borderColor: darkMode ? '#555' : '#ccc',
+        style={[estiloGlobal.input, estiloGlobal.textArea, {
+          backgroundColor: darkMode ? cores.cinzaEscuro : cores.fundoClaro,
+          color: darkMode ? cores.textoClaro : cores.textoEscuro,
+          borderColor: darkMode ? cores.cinzaEscuro : cores.cinzaClaro,
           },
         ]}
         placeholder="Conteúdo"
-        placeholderTextColor={darkMode ? '#888' : '#999'}
+        placeholderTextColor={darkMode ?  cores.textoClaro : cores.textoEscuro}
         value={content}
         onChangeText={setContent}
         multiline
@@ -82,59 +78,22 @@ const CreateNoteScreen = ({ navigation, route }) => {
       />
 
       <TouchableOpacity
-        style={[styles.saveButton, { backgroundColor: darkMode ? '#3399ff' : '#007AFF' }]}
+       style={[estiloGlobal.botaoPrimario, { backgroundColor: darkMode ? cores.primarioEscuro : cores.primarioClaro }]}
         onPress={handleSave}
       >
-        <Text style={styles.saveButtonText}>SALVAR</Text>
+        <Text style={estiloGlobal.textoBotaoPrimario}>SALVAR</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={[styles.clearButton, { backgroundColor: darkMode ? '#444' : '#ddd' }]}
+        style={[estiloGlobal.botaoSecundario, { backgroundColor: darkMode ? cores.cinzaEscuro : cores.cinzaClaro }]}
         onPress={handleClear}
       >
-        <Text style={[styles.clearButtonText, { color: darkMode ? '#eee' : '#333' }]}>
-          LIMPAR
-        </Text>
+        <Text style={[estiloGlobal.textoBotaoSecundario, { color: darkMode ? '#eee' : 'black' }]}>LIMPAR</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', paddingHorizontal: 20 },
-  title: { fontSize: 26, fontWeight: '600', marginBottom: 20, textAlign: 'center' },
-  input: {
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 12,
-    paddingHorizontal: 12,
-    height: 45,
-  },
-  textArea: {
-    height: 100,
-    textAlignVertical: 'top',
-  },
-  saveButton: {
-    paddingVertical: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  saveButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  clearButton: {
-    paddingVertical: 10,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  clearButtonText: {
-    fontWeight: 'bold',
-    fontSize: 15,
-  },
-});
+
 
 export default CreateNoteScreen;

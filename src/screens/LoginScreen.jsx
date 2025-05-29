@@ -1,33 +1,37 @@
 import React from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
+import { estiloGlobal, cores } from '../styles/global';
 
 const LoginScreen = ({ navigation }) => {
   const { darkMode } = useTheme();
 
   return (
-    <View style={[styles.container, { backgroundColor: darkMode ? '#111' : '#fff' }]}>
-      <Text style={[styles.title, { color: darkMode ? '#fff' : '#000' }]}>Bem-vindo</Text>
+    <View style={[estiloGlobal.container, { backgroundColor: darkMode ? cores.fundoEscuro : cores.fundoClaro }]}>
+      <Text style={[estiloGlobal.titulo, { color: darkMode ? cores.textoEscuro : cores.textoClaro }]}>
+        Bem-vindo
+      </Text>
 
       <TextInput
         style={[
-          styles.input,
+          estiloGlobal.input,
           {
-            backgroundColor: darkMode ? '#333' : '#fff',
-            color: darkMode ? '#fff' : '#000',
-            borderColor: darkMode ? '#555' : '#ccc',
+            backgroundColor: darkMode ? cores.cinzaEscuro : cores.fundoClaro,
+            color: darkMode ? cores.textoEscuro : cores.textoClaro,
+            borderColor: darkMode ? cores.cinzaEscuro : cores.cinzaClaro,
           },
         ]}
         placeholder="Email"
         placeholderTextColor={darkMode ? '#aaa' : '#888'}
       />
+
       <TextInput
         style={[
-          styles.input,
+          estiloGlobal.input,
           {
-            backgroundColor: darkMode ? '#333' : '#fff',
-            color: darkMode ? '#fff' : '#000',
-            borderColor: darkMode ? '#555' : '#ccc',
+            backgroundColor: darkMode ? cores.cinzaEscuro : cores.fundoClaro,
+            color: darkMode ? cores.textoEscuro : cores.textoClaro,
+            borderColor: darkMode ? cores.cinzaEscuro : cores.cinzaClaro,
           },
         ]}
         placeholder="Senha"
@@ -37,23 +41,12 @@ const LoginScreen = ({ navigation }) => {
 
       <Button
         title="Entrar"
-        color={darkMode ? '#3399ff' : '#007AFF'}
+        color={darkMode ? cores.primarioEscuro : cores.primarioClaro}
         onPress={() => navigation.navigate('Início')}
       />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', paddingHorizontal: 20 },
-  title: { fontSize: 24, marginBottom: 20, textAlign: 'center' },
-  input: {
-    height: 40,
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    borderRadius: 8,
-  },
-});
 
 export default LoginScreen;

@@ -1,23 +1,43 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
+import { estiloGlobal, cores } from '../styles/global';
 
 const ViewNoteScreen = ({ route, navigation }) => {
   const { note, index } = route.params;
   const { darkMode } = useTheme();
 
   return (
-    <View style={[styles.container, { backgroundColor: darkMode ? '#111' : '#fff' }]}>
-      <Text style={[styles.title, { color: darkMode ? '#fff' : '#000' }]}>{note.title}</Text>
-      <Text style={[styles.content, { color: darkMode ? '#ccc' : '#333' }]}>{note.content}</Text>
+    <View
+      style={[
+        estiloGlobal.container,
+        {
+          justifyContent: 'center',
+          backgroundColor: darkMode ? cores.fundoEscuro : cores.fundoClaro,
+        },
+      ]}
+    >
+      <Text style={[estiloGlobal.titulo, { color: darkMode ? cores.textoEscuro : cores.textoClaro }]}>
+        {note.title}
+      </Text>
+
+      <Text
+        style={{
+          fontSize: 16,
+          marginBottom: 20,
+          color: darkMode ? '#ccc' : '#333',
+        }}
+      >
+        {note.content}
+      </Text>
 
       <Button
         title="Editar"
-        color={darkMode ? '#3399ff' : '#007AFF'}
+        color={darkMode ? cores.primarioEscuro : cores.primarioClaro}
         onPress={() => navigation.navigate('Criar Anotação', { note, index })}
       />
 
-      <View style={styles.spacer} />
+      <View style={{ height: 10 }} />
 
       <Button
         title="Voltar para Anotações"
@@ -28,11 +48,5 @@ const ViewNoteScreen = ({ route, navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', paddingHorizontal: 20 },
-  title: { fontSize: 24, marginBottom: 10, textAlign: 'center' },
-  content: { fontSize: 16, marginBottom: 20 },
-  spacer: { height: 10 },
-});
 
 export default ViewNoteScreen;

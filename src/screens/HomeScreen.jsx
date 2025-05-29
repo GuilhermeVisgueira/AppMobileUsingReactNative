@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import { getNotes } from '../utils/storage';
 import { useTheme } from '../context/ThemeContext';
+import { estiloGlobal, cores } from '../styles/global';
+
 
 const HomeScreen = ({ navigation }) => {
   const [notes, setNotes] = useState([]);
@@ -23,9 +25,7 @@ const HomeScreen = ({ navigation }) => {
 
   const loadNotes = async () => {
     const savedNotes = await getNotes();
-    const sortedNotes = savedNotes.sort(
-      (a, b) => new Date(b.date) - new Date(a.date)
-    );
+    const sortedNotes = savedNotes.sort((a, b) => new Date(b.date) - new Date(a.date));
     setNotes(sortedNotes);
   };
 
@@ -38,99 +38,66 @@ const HomeScreen = ({ navigation }) => {
   const renderItem = ({ item, index }) => (
     <TouchableOpacity
       style={[
-        styles.noteItem,
+        estiloGlobal.notaItem,
         {
-          backgroundColor: darkMode ? '#222' : '#f7f7f7',
-          borderColor: darkMode ? '#444' : '#ccc',
+          backgroundColor: darkMode ? cores.secundarioEscuro : cores.secundarioClaro,
+          borderColor: darkMode ? cores.cinzaEscuro : cores.cinzaClaro,
         },
       ]}
-      onPress={() =>
-        navigation.navigate('Ver Anotação', { note: item, index })
-      }
+      onPress={() => navigation.navigate('Ver Anotação', { note: item, index })}
     >
-      <Text
-        style={[styles.noteTitle, { color: darkMode ? '#fff' : '#000' }]}
-      >
+      <Text style={[estiloGlobal.tituloNota, { color: darkMode ? cores.textoClaro : cores.textoEscuro }]}>
         {item.title}
       </Text>
     </TouchableOpacity>
   );
 
   return (
-    <View
-      style={[
-        styles.container,
-        { backgroundColor: darkMode ? '#111' : '#fff' },
-      ]}
-    >
-      <Text style={[styles.title, { color: darkMode ? '#fff' : '#000' }]}>
+    <View style={[estiloGlobal.container, { backgroundColor: darkMode ? cores.fundoEscuro : cores.fundoClaro }]}>
+      <Text style={[estiloGlobal.titulo, { color: darkMode ? cores.textoClaro : cores.textoEscuro }]}>
         Suas Anotações
       </Text>
 
       <TextInput
         style={[
-          styles.searchInput,
+          estiloGlobal.inputBusca,
           {
-            backgroundColor: darkMode ? '#333' : '#fff',
-            color: darkMode ? '#fff' : '#000',
-            borderColor: darkMode ? '#555' : '#ccc',
+            backgroundColor: darkMode ? cores.cinzaEscuro : cores.fundoClaro,
+            color: darkMode ? cores.textoClaro : cores.textoEscuro,
+            borderColor: darkMode ? cores.cinzaEscuro : cores.cinzaClaro,
           },
         ]}
         placeholder="Buscar..."
-        placeholderTextColor={darkMode ? '#aaa' : '#888'}
+        placeholderTextColor={darkMode ? cores.textoClaro : cores.textoEscuro}
         value={searchTerm}
         onChangeText={setSearchTerm}
       />
 
-      <FlatList
+      <FlatList style={{margin:15}}
         data={filteredNotes}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
+
+        
       />
 
-      <View style={styles.buttonWrapper}>
+      <View style={{ 
+      
+      marginVertical: 110,
+      alignItems: 'center',
+      alignSelf: 'center',
+      width: '80%',
+      borderRadius: 8,}}>
+        
         <Button
+          
           title="Criar Nova Anotação"
           onPress={() => navigation.navigate('Criar Anotação')}
-          color={darkMode ? '#3399ff' : '#007AFF'}
+          color={darkMode ? cores.primarioEscuro : cores.primarioClaro}
         />
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
-    textAlign: 'center',
-    fontWeight: '600',
-  },
-  searchInput: {
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    marginBottom: 15,
-    height: 40,
-    borderRadius: 6,
-  },
-  noteItem: {
-    padding: 12,
-    borderBottomWidth: 1,
-    borderRadius: 6,
-    marginBottom: 10,
-  },
-  noteTitle: {
-    fontSize: 18,
-    fontWeight: '500',
-  },
-  buttonWrapper: {
-    marginTop: 10,
-  },
-});
 
 export default HomeScreen;
