@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+  import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { getNotes } from '../utils/storage';
 import { useTheme } from '../context/ThemeContext';
@@ -40,10 +40,10 @@ const VerAnotacoesScreen = ({ navigation }) => {
       ]}
       onPress={() => navigation.navigate('Ver Anotação', { note: item, index })}
     >
-      <Text style={[estiloGlobal.tituloNota, { color: darkMode ? cores.textoEscuro : cores.textoClaro }]}>
+      <Text style={[estiloGlobal.tituloNota, { color: darkMode ? cores.textoClaro : cores.textoEscuro }]}>
         {item.title}
       </Text>
-      <Text style={[estiloGlobal.dataNota, { color: darkMode ? '#bbb' : '#666' }]}>
+      <Text style={[estiloGlobal.dataNota, { color: darkMode ? cores.textoClaro : cores.textoEscuro }]}>
         {formatDate(item.date)}
       </Text>
     </TouchableOpacity>
@@ -51,12 +51,12 @@ const VerAnotacoesScreen = ({ navigation }) => {
 
   return (
     <View style={[estiloGlobal.container, { backgroundColor: darkMode ? cores.fundoEscuro : cores.fundoClaro }]}>
-      <Text style={[estiloGlobal.titulo, { color: darkMode ? cores.textoEscuro : cores.textoClaro }]}>
+      <Text style={[estiloGlobal.titulo, { color: darkMode ? cores.textoClaro : cores.textoEscuro }]}>
         Todas as Anotações
       </Text>
 
       {notes.length === 0 ? (
-        <Text style={[estiloGlobal.semNotas, { color: darkMode ? '#aaa' : '#666' }]}>
+        <Text style={[estiloGlobal.semNotas, { color: darkMode ? cores.textoClaro : cores.textoEscuro }]}>
           Nenhuma anotação disponível.
         </Text>
       ) : (

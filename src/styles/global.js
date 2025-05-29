@@ -18,6 +18,7 @@ export const cores = {
 
 export const estiloGlobal = StyleSheet.create({
   container: {
+    borderRadius: 8,
     flex: 1,
     paddingHorizontal: 20,
     paddingTop: 20,
@@ -97,4 +98,10 @@ export const estiloGlobal = StyleSheet.create({
     marginTop: 50,
     fontSize: 16,
   },
+  botaoNotas: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    width: '80%',
+    fontSize: 500,
+  }
 });

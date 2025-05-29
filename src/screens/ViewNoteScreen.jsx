@@ -17,15 +17,15 @@ const ViewNoteScreen = ({ route, navigation }) => {
         },
       ]}
     >
-      <Text style={[estiloGlobal.titulo, { color: darkMode ? cores.textoEscuro : cores.textoClaro }]}>
+      <Text style={[estiloGlobal.titulo, { color: darkMode ? cores.textoClaro : cores.textoEscuro }]}>
         {note.title}
       </Text>
 
       <Text
         style={{
-          fontSize: 16,
+          fontSize: 15,
           marginBottom: 20,
-          color: darkMode ? '#ccc' : '#333',
+          color: darkMode ? cores.textoClaro : cores.textoEscuro,
         }}
       >
         {note.content}
@@ -35,14 +35,18 @@ const ViewNoteScreen = ({ route, navigation }) => {
         title="Editar"
         color={darkMode ? cores.primarioEscuro : cores.primarioClaro}
         onPress={() => navigation.navigate('Criar Anotação', { note, index })}
+        
       />
 
-      <View style={{ height: 10 }} />
+      <View style={[estiloGlobal.botaoPrimario]}
+      />
 
       <Button
+        
         title="Voltar para Anotações"
         color={darkMode ? '#aaa' : '#555'}
         onPress={() => navigation.navigate('Ver Anotações')}
+        
       />
     </View>
   );

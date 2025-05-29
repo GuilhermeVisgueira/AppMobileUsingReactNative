@@ -8,7 +8,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={[estiloGlobal.container, { backgroundColor: darkMode ? cores.fundoEscuro : cores.fundoClaro }]}>
-      <Text style={[estiloGlobal.titulo, { color: darkMode ? cores.textoEscuro : cores.textoClaro }]}>
+      <Text style={[estiloGlobal.titulo, { color: darkMode ? cores.textoClaro : cores.textoEscuro }]}>
         Bem-vindo
       </Text>
 

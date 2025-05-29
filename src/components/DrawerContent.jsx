@@ -14,7 +14,7 @@ const DrawerContent = (props) => {
     >
       <View style={styles.drawerContent}>
         <DrawerItem
-        
+          
           label="Início"
           labelStyle={{ color: darkMode ? '#fff' : '#000' }}
           onPress={() => props.navigation.navigate('Início')}
