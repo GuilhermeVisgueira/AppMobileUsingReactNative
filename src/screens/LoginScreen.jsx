@@ -17,12 +17,12 @@ const LoginScreen = ({ navigation }) => {
           estiloGlobal.input,
           {
             backgroundColor: darkMode ? cores.cinzaEscuro : cores.fundoClaro,
-            color: darkMode ? cores.textoEscuro : cores.textoClaro,
+            color: darkMode ? cores.textoClaro : cores.textoEscuro,
             borderColor: darkMode ? cores.cinzaEscuro : cores.cinzaClaro,
           },
         ]}
         placeholder="Email"
-        placeholderTextColor={darkMode ? '#aaa' : '#888'}
+        placeholderTextColor={darkMode ? cores.textoClaro : cores.textoEscuro}
       />
 
       <TextInput
@@ -30,12 +30,12 @@ const LoginScreen = ({ navigation }) => {
           estiloGlobal.input,
           {
             backgroundColor: darkMode ? cores.cinzaEscuro : cores.fundoClaro,
-            color: darkMode ? cores.textoEscuro : cores.textoClaro,
+            color: darkMode ? cores.textoClaro : cores.textoEscuro,
             borderColor: darkMode ? cores.cinzaEscuro : cores.cinzaClaro,
           },
         ]}
         placeholder="Senha"
-        placeholderTextColor={darkMode ? '#aaa' : '#888'}
+        placeholderTextColor={darkMode ? cores.textoClaro : cores.textoEscuro}
         secureTextEntry
       />
 
